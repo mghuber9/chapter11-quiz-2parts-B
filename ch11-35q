@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 11 Multiple Choice Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+    .question { margin-bottom: 20px; }
+    .answers label { display: block; margin: 5px 0; }
+    #submitBtn { padding: 10px 20px; font-size: 16px; margin-top: 20px; }
+    .correct-answer { color: green; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Chapter 11 Multiple Choice Quiz</h2>
+  <div id="quizContainer"></div>
+  <button id="submitBtn">Submit</button>
+
+  <script>
+    const quizData = [
+  {
+    "question": "What is the primary difference between a regressive and a progressive tax?",
+    "correct": "Regressive taxes place a heavier burden on low-income earners, while progressive taxes increase with income.",
+    "answers": [
+      "Regressive taxes take more from higher-income earners, while progressive taxes are equal for all.",
+      "Progressive taxes are illegal in Texas, while regressive taxes are required.",
+      "Regressive taxes place a heavier burden on low-income earners, while progressive taxes increase with income.",
+      "Regressive taxes only apply to luxury items, while progressive taxes are flat-rate."
+    ]
+  },
+  {
+    "question": "What is a general law city?",
+    "correct": "A city that operates under state law without a custom charter.",
+    "answers": [
+      "A city with its own locally approved charter.",
+      "A city that operates under state law without a custom charter.",
+      "A city that governs counties in rural areas.",
+      "A federally protected city with national oversight."
+    ]
+  },
+  {
+    "question": "What is a home rule city?",
+    "correct": "A city that adopts a charter approved by local voters.",
+    "answers": [
+      "A city regulated entirely by the Texas Senate.",
+      "A city with fewer than 5,000 residents.",
+      "A city that adopts a charter approved by local voters.",
+      "A city run by federal administrative boards."
+    ]
+  },
+  {
+    "question": "What is the difference between a strong mayor-council and a council-manager form of city government?",
+    "correct": "In a council-manager system, a professional manager implements policies set by the council.",
+    "answers": [
+      "In a strong mayor system, the mayor is appointed by the governor.",
+      "In a council-manager system, the mayor handles all administration.",
+      "In a council-manager system, a professional manager implements policies set by the council.",
+      "In both systems, power is equally shared between the city attorney and the police chief."
+    ]
+  },
+  {
+    "question": "Which area is a major focus of state and local spending in Texas?",
+    "correct": "Public education and infrastructure",
+    "answers": [
+      "Border security enforcement",
+      "Public education and infrastructure",
+      "Political campaign financing",
+      "International trade relations"
+    ]
+  },
+  {
+    "question": "What is a biennial budget?",
+    "correct": "A budget that covers two fiscal years",
+    "answers": [
+      "A budget approved by voters every year",
+      "A budget that covers two fiscal years",
+      "A budget only used during emergencies",
+      "A budget that changes monthly based on inflation"
+    ]
+  },
+  {
+    "question": "What is the purpose of municipal bonds?",
+    "correct": "To raise funds for capital projects like roads and public buildings",
+    "answers": [
+      "To collect interest from private banks",
+      "To cover day-to-day operating costs of city governments",
+      "To raise funds for capital projects like roads and public buildings",
+      "To eliminate property taxes"
+    ]
+  },
+  {
+    "question": "What is the primary role of county governments in Texas?",
+    "correct": "To act as administrative arms of the state and provide local services",
+    "answers": [
+      "To pass federal laws",
+      "To act as administrative arms of the state and provide local services",
+      "To create local school curriculum",
+      "To manage city ordinances"
+    ]
+  },
+  {
+    "question": "What does ad valorem mean in the context of property taxes?",
+    "correct": "According to the assessed value of the property",
+    "answers": [
+      "A flat rate for all homeowners",
+      "Based on income",
+      "According to the assessed value of the property",
+      "Collected only at the federal level"
+    ]
+  },
+  {
+    "question": "What is the function of a Council of Government (COG) in Texas?",
+    "correct": "To coordinate planning and services between local governments",
+    "answers": [
+      "To regulate elections",
+      "To coordinate planning and services between local governments",
+      "To set federal tax rates",
+      "To approve mayoral appointments"
+    ]
+  },
+  {
+    "question": "What is one of the main duties of the county judge in Texas?",
+    "correct": "Presiding over the commissioners court and issuing emergency declarations",
+    "answers": [
+      "Approving federal bills",
+      "Overseeing school curriculum",
+      "Presiding over the commissioners court and issuing emergency declarations",
+      "Appointing state senators"
+    ]
+  },
+  {
+    "question": "What is the primary function of the commissioners court in Texas counties?",
+    "correct": "Administering state and county government services",
+    "answers": [
+      "Serving as a judicial court",
+      "Administering state and county government services",
+      "Collecting federal income taxes",
+      "Writing city ordinances"
+    ]
+  },
+  {
+    "question": "Which group sets policies, approves budgets, and hires the superintendent in local school districts?",
+    "correct": "The school board",
+    "answers": [
+      "The state board of education",
+      "The county judge",
+      "The school board",
+      "The parent-teacher association"
+    ]
+  },
+  {
+    "question": "What is the role of the Texas comptroller in the budget process?",
+    "correct": "To estimate state revenues and certify the budget",
+    "answers": [
+      "To appoint city mayors",
+      "To oversee military spending",
+      "To estimate state revenues and certify the budget",
+      "To serve as attorney general"
+    ]
+  },
+  {
+    "question": "What is the significance of single-member districts in local elections?",
+    "correct": "They give each geographic area its own representative",
+    "answers": [
+      "They lower voter turnout",
+      "They give each geographic area its own representative",
+      "They are used only for federal elections",
+      "They eliminate minority representation"
+    ]
+  },
+  {
+    "question": "What is a justice of the peace responsible for in Texas?",
+    "correct": "Hearing minor civil and criminal matters",
+    "answers": [
+      "Running municipal parks",
+      "Deciding cases involving large-scale fraud",
+      "Hearing minor civil and criminal matters",
+      "Inspecting public housing"
+    ]
+  },
+  {
+    "question": "What do constables typically do in county government?",
+    "correct": "Serve legal papers and support justice of the peace courts",
+    "answers": [
+      "Act as city treasurers",
+      "Serve legal papers and support justice of the peace courts",
+      "Collect tolls from highways",
+      "Monitor school attendance"
+    ]
+  },
+  {
+    "question": "What are capital improvements in the context of local government?",
+    "correct": "Long-term investments in infrastructure like buildings or flood control",
+    "answers": [
+      "Budget surpluses",
+      "Long-term investments in infrastructure like buildings or flood control",
+      "Temporary tax breaks",
+      "Campaign contributions"
+    ]
+  },
+  {
+    "question": "How are municipal bonds typically repaid?",
+    "correct": "With tax revenue or revenue from the funded project",
+    "answers": [
+      "Through sales tax only",
+      "From the governor\u2019s office",
+      "With tax revenue or revenue from the funded project",
+      "Using the national debt surplus"
+    ]
+  },
+  {
+    "question": "Why does Texas use a biennial budget system?",
+    "correct": "Because the legislature meets once every two years",
+    "answers": [
+      "Because the legislature meets once every two years",
+      "To match the federal budget",
+      "To prevent over-spending by cities",
+      "Because it reduces education funding requirements"
+    ]
+  },
+  {
+    "question": "What is the role of the city manager in a council-manager government?",
+    "correct": "Implementing policies passed by the city council",
+    "answers": [
+      "Drafting federal legislation",
+      "Managing local businesses",
+      "Implementing policies passed by the city council",
+      "Collecting state income taxes"
+    ]
+  },
+  {
+    "question": "How is a county commissioner chosen in Texas?",
+    "correct": "Elected from a single-member precinct within the county",
+    "answers": [
+      "Appointed by the governor",
+      "Elected from a single-member precinct within the county",
+      "Chosen by the city council",
+      "Rotated annually among mayors"
+    ]
+  },
+  {
+    "question": "What is the main responsibility of the county clerk?",
+    "correct": "Maintaining official records and documents",
+    "answers": [
+      "Appointing justices of the peace",
+      "Enforcing state laws",
+      "Maintaining official records and documents",
+      "Collecting toll road fees"
+    ]
+  },
+  {
+    "question": "What is a major reason for using a professional city manager?",
+    "correct": "To bring expertise and consistency to local government operations",
+    "answers": [
+      "To reduce voter input",
+      "To centralize state power",
+      "To bring expertise and consistency to local government operations",
+      "To limit city spending on public services"
+    ]
+  },
+  {
+    "question": "Why are municipal bonds considered important for local governments?",
+    "correct": "They allow cities to fund large projects without raising taxes immediately",
+    "answers": [
+      "They reduce property values",
+      "They are optional and rarely used",
+      "They allow cities to fund large projects without raising taxes immediately",
+      "They are primarily used to fund election campaigns"
+    ]
+  },
+  {
+    "question": "What is a county treasurer's role in Texas government?",
+    "correct": "Managing and disbursing county funds",
+    "answers": [
+      "Leading legislative committees",
+      "Presiding over district court",
+      "Managing and disbursing county funds",
+      "Approving state-wide taxes"
+    ]
+  },
+  {
+    "question": "What is one of the county sheriff\u2019s key duties?",
+    "correct": "Enforcing the law and managing the county jail",
+    "answers": [
+      "Overseeing public schools",
+      "Enforcing the law and managing the county jail",
+      "Writing city ordinances",
+      "Representing Texas in the Senate"
+    ]
+  },
+  {
+    "question": "Why is the commissioner\u2019s court not a judicial court despite its name?",
+    "correct": "It performs executive and legislative functions, not judicial",
+    "answers": [
+      "It doesn\u2019t exist anymore",
+      "It only functions during emergencies",
+      "It performs executive and legislative functions, not judicial",
+      "It is a federal agency"
+    ]
+  },
+  {
+    "question": "What is the function of the tax assessor-collector in Texas counties?",
+    "correct": "Calculating and collecting local taxes like property tax",
+    "answers": [
+      "Conducting elections",
+      "Building infrastructure",
+      "Calculating and collecting local taxes like property tax",
+      "Certifying court cases"
+    ]
+  },
+  {
+    "question": "What is an example of a capital improvement project?",
+    "correct": "Building a new fire station or upgrading a sewer system",
+    "answers": [
+      "Increasing the mayor\u2019s salary",
+      "Building a new fire station or upgrading a sewer system",
+      "Holding public debates",
+      "Funding a political campaign"
+    ]
+  },
+  {
+    "question": "What is the benefit of long-range planning in city budgeting?",
+    "correct": "It helps align spending with future needs and revenue projections",
+    "answers": [
+      "It eliminates the need for taxes",
+      "It ensures cities can respond to unplanned federal audits",
+      "It helps align spending with future needs and revenue projections",
+      "It lets voters skip elections"
+    ]
+  },
+  {
+    "question": "What is the role of special districts like ISDs (Independent School Districts)?",
+    "correct": "Providing a single service such as education",
+    "answers": [
+      "Managing city parks",
+      "Governing areas outside of state law",
+      "Providing a single service such as education",
+      "Supervising highway construction"
+    ]
+  },
+  {
+    "question": "What type of revenue do cities often use to repay municipal bonds?",
+    "correct": "Property or sales taxes",
+    "answers": [
+      "Lottery winnings",
+      "Business licensing fees",
+      "Property or sales taxes",
+      "Volunteer donations"
+    ]
+  },
+  {
+    "question": "What type of city operates under charters written by the Texas legislature?",
+    "correct": "General law cities",
+    "answers": [
+      "Federal cities",
+      "General law cities",
+      "Rural unincorporated areas",
+      "Home rule cities"
+    ]
+  },
+  {
+    "question": "What is one advantage of home rule cities over general law cities?",
+    "correct": "They can write and adopt their own charter and structure",
+    "answers": [
+      "They do not need to follow any state laws",
+      "They elect U.S. senators",
+      "They can write and adopt their own charter and structure",
+      "They have fewer responsibilities"
+    ]
+  }
+];
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function loadQuiz() {
+      const container = document.getElementById('quizContainer');
+      container.innerHTML = '';
+      shuffle(quizData);
+
+      quizData.forEach((item, index) => {
+        shuffle(item.answers);
+        const qDiv = document.createElement('div');
+        qDiv.className = 'question';
+        qDiv.innerHTML = `<p><strong>${index + 1}. ${item.question}</strong></p>`;
+
+        const answersDiv = document.createElement('div');
+        answersDiv.className = 'answers';
+
+        item.answers.forEach(answer => {
+          answersDiv.innerHTML += `
+            <label>
+              <input type="radio" name="q${index}" value="${answer}"> ${answer}
+            </label>
+          `;
+        });
+
+        qDiv.appendChild(answersDiv);
+        container.appendChild(qDiv);
+      });
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      let score = 0;
+      let missed = [];
+
+      quizData.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+        if (selected && selected.value === item.correct) {
+          score++;
+        } else {
+          missed.push({ question: item.question, correct: item.correct });
+        }
+      });
+
+      let name = prompt("Enter your name:");
+      let quizName = "Chapter 11 Quiz - Part B (35)";
+      let total = quizData.length;
+
+      fetch("https://script.google.com/macros/s/AKfycbyMbUW3VFPYQ26Pi7tRV-33P_TXalJ7ljIKONHqQYO3Tkza_b315eA-1qca5AXoIm_p/exec", {
+        method: "POST",
+        body: JSON.stringify({
+          name: name,
+          quiz: quizName,
+          score: score,
+          total: total
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      console.log("Fetch sent");
+
+      setTimeout(() => {
+        const container = document.getElementById('quizContainer');
+        container.innerHTML = `<h2>Your Score: ${score} / ${quizData.length}</h2>`;
+
+        if (missed.length > 0) {
+          container.innerHTML += `<h3>You missed the following questions:</h3>`;
+          missed.forEach((item, i) => {
+            container.innerHTML += `
+              <div class="question">
+                <p><strong>${i + 1}. ${item.question}</strong></p>
+                <p class="correct-answer">Correct answer: ${item.correct}</p>
+              </div>
+            `;
+          });
+        } else {
+          container.innerHTML += `<p><strong>Perfect score! Great job!</strong></p>`;
+        }
+
+        document.getElementById('submitBtn').style.display = 'none';
+      }, 1000);
+    });
+
+    window.onload = loadQuiz;
+  </script>
+</body>
+</html>
+
+
+
+
+
