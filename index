@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 11 Quizzes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    .button {
+      display: inline-block;
+      margin: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      text-decoration: none;
+      color: white;
+      background-color: #007acc;
+      border-radius: 8px;
+    }
+    .button:hover {
+      background-color: #005b99;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chapter 11 - Texas Government Quizzes</h1>
+  <p>Select the quiz you want to take:</p>
+  <a class="button" href="Chapter11_REAL_35_FINAL_FIXED_COMPLETE.html">Take 35-Question Quiz</a>
+  <a class="button" href="Chapter11_REAL_30_FINAL_FIXED.html">Take 30-Question Quiz</a>
+</body>
+</html>
